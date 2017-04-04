@@ -80,15 +80,13 @@ class Validator
         
         if ( isset($options['rawencoding']) )
         {
-            if ( gettype($options['rawencoding']) != "boolean" )
+            $enc = $options['rawencoding'];
+            if ($enc !== true && $enc !== false && $enc !== 0 && $enc !== 1)
             {
-                if ( ! ($options['rawencoding'] === 1 || $options['rawencoding'] === 1) )
-                {
-                    throw new InvalidRequestException(
-                        "rawencoding option has to be instantiated as a boolean",
-                        100
-                    );
-                }
+                throw new InvalidRequestException(
+                    "Invalid value for 'rawencoding' parameter.",
+                    100
+                );
             }
         }
 
